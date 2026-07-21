@@ -18,7 +18,8 @@ curl -X POST http://localhost:8080/api/notifications/send \
   "channels": ["EMAIL", "SMS", "PUSH"]
 }'
 
-erDiagram
+## ER Diagram
+```mermaid
     USERS ||--o{ USER_PREFERENCES : has
     USERS ||--o{ NOTIFICATION_HISTORY : logs
     USERS {
