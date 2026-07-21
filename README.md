@@ -3,6 +3,7 @@
 This is a unified backend service that receives message payloads and routes them to user channels (Email, SMS, Push, In-App) while strictly respecting user opt-in preferences.
 
 ## How to Run & Test
+
 1. Clone the repository.
 2. Run the application using Maven: `./mvnw spring-boot:run`
 3. The H2 in-memory database is pre-populated with a test user (ID: 1).
@@ -17,9 +18,12 @@ curl -X POST http://localhost:8080/api/notifications/send \
   "body": "Hello World",
   "channels": ["EMAIL", "SMS", "PUSH"]
 }'
+```
 
 ## ER Diagram
+
 ```mermaid
+erDiagram
     USERS ||--o{ USER_PREFERENCES : has
     USERS ||--o{ NOTIFICATION_HISTORY : logs
     USERS {
@@ -42,8 +46,12 @@ curl -X POST http://localhost:8080/api/notifications/send \
         string status
         timestamp created_at
     }
+```
 
-    classDiagram
+## Class Diagram
+
+```mermaid
+classDiagram
     NotificationSender <|.. EmailSender
     NotificationSender <|.. SmsSender
     NotificationSender <|.. PushSender
@@ -59,3 +67,4 @@ curl -X POST http://localhost:8080/api/notifications/send \
     class NotificationService {
         +processNotification(NotificationRequest)
     }
+```
